@@ -103,8 +103,8 @@ Feature: Explore the Errata page
 
   Scenario: Check erratum in channel
     Given I am on the errata page
+    And I follow "Software"
     And I follow "Channels"
-    And I follow "Software Channels"
     And I follow "All Channels"
     And I follow "Test Base Channel"
     And I follow "Errata" in the content area
