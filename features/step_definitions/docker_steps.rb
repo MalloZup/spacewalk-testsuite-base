@@ -172,15 +172,12 @@ And(/^I run image.store tests via xmlrpc$/) do
   store_typ = cont_op.listImageStoreTypes
   assert_equal(store_typ.length, 1, 'we have only type support for Registry! ' \
                'New method added?! please update the tests')
-  assert_equal(store_typ[0]['label'], 'registry',
-               'imagestore label type should be registry!')
   registry_list = cont_op.listImageStores
   puts registry_list # print just for debug
   assert_equal(registry_list[0]['label'], 'galaxy-registry', 'label is galaxy!')
   assert_equal(registry_list[0]['uri'], 'registry.mgr.suse.de',
                'uri should be registry.mgr.suse.de')
   # test setDetails call delete if test fail in the middle.
-  # delete image doesn't raise an error if image doesn't exists
   cont_op.createStore('Norimberga',
                       'https://github.com/SUSE/spacewalk-testsuite-base',
                       'registry')
@@ -189,10 +186,8 @@ And(/^I run image.store tests via xmlrpc$/) do
   details_store['username'] = ''
   details_store['password'] = ''
   cont_op.setDetails('Norimberga', details_store)
-  # test getDetails call
   details = cont_op.getDetailsStore('Norimberga')
   assert_equal(details['uri'], 'Germania', 'uri should be Germania')
-  assert_equal(details['username'], '', 'username should be empty')
   cont_op.deleteStore('Norimberga')
 end
 
