@@ -48,15 +48,15 @@ end
 # This function is used to get one of the nodes based on its type
 def get_target(host)
   nodes_map = {
-    'server' => $server,
-    'proxy' => $proxy,
-    'ceos-minion' => $ceos_minion,
-    'ssh-minion' => $ssh_minion,
-    'sle-minion' => $minion,
-    'sle-client' => $client,
-    'sle-migrated-minion' => $client
+    'server': $server,
+    'proxy': $proxy,
+    'ceos-minion': $ceos_minion,
+    'ssh-minion': $ssh_minion,
+    'sle-minion': $minion,
+    'sle-client': $client,
+    'sle-migrated-minion': $client
   }
-  node = nodes_map[host]
+  node = nodes_map[host.to_sym]
   raise 'Invalid target' if node.nil?
   node
 end
